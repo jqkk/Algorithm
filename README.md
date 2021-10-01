@@ -2,6 +2,10 @@
 
 Chaeduk의 javascript 알고리즘 스터디🌕🌕🌕
 
+## 참고자료
+
+- https://github.com/trekhleb/javascript-algorithms.git
+
 ## 커밋 메시지
 
 - feat : 새로운 기능에 대한 커밋
