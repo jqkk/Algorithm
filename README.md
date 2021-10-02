@@ -2,6 +2,12 @@
 
 Chaeduk의 javascript 알고리즘 스터디🌕🌕🌕
 
+## 실행 방법
+
+```
+npm test -- '실행할 파일 이름'
+```
+
 ## 참고자료
 
 - https://github.com/trekhleb/javascript-algorithms.git
