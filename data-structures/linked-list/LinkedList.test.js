@@ -8,6 +8,8 @@ import LinkedList from "./LinkedList";
 
 //toBe() : 테스트의 결과를 확인하는 API(테스트의 예산 결과 값을 넣는다.)
 
+//toBeDefined() : 정의가 되었는지 확인
+
 describe("LinkedList", () => {
   it("append 1,2,3,4", () => {
     const linkedList = new LinkedList();
@@ -62,5 +64,27 @@ describe("LinkedList", () => {
     deletedNode = linkedList.deleteTail();
     expect(deletedNode.value).toBe(5);
     expect(linkedList.toString()).toBe("1,2,4");
+  });
+
+  it("find test", () => {
+    const linkedList = new LinkedList();
+
+    linkedList.fromArray([1, 2, 3, 4, 5]);
+
+    expect(linkedList.find({ value: 2 })).toBeDefined();
+    expect(linkedList.find({ value: 6 })).toBeNull();
+  });
+
+  it("from Array to LinkedList", () => {
+    const linkedList = new LinkedList();
+    linkedList.fromArray([1, 2, 3, 4, 5]);
+    expect(linkedList.toString()).toBe("1,2,3,4,5");
+  });
+
+  it("reverse test", () => {
+    const linkedList = new LinkedList();
+    linkedList.fromArray([1, 2, 3, 4, 5]);
+    linkedList.reverse();
+    expect(linkedList.toString()).toBe("5,4,3,2,1");
   });
 });
