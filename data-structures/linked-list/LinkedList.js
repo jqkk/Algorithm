@@ -5,6 +5,7 @@ export default class LinkedList {
   //연결리스트
   constructor(comparatorFunction) {
     //생성자
+    //파라미터에 값이 들어오지 않으면 comparatorFunction의 값은 undefined로 설정됨
     this.head = null; //head 초깃값 null(맨처음)
     this.tail = null; //tail 초깂값 null(맨뒤)
     this.compare = new Comparator(comparatorFunction);
@@ -43,6 +44,8 @@ export default class LinkedList {
 
     this.tail.next = newNode;
     this.tail = newNode;
+
+    return this;
   }
 
   delete(value) {
@@ -190,7 +193,9 @@ export default class LinkedList {
 
   toString(callback) {
     //연결리스트를 문자열로 변환
-    return this.toArray().map((node) => node.toString(callback)).toString;
+    return this.toArray()
+      .map((node) => node.toString(callback))
+      .toString();
   }
 
   reverse() {
