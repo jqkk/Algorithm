@@ -196,6 +196,7 @@ export default class LinkedList {
     return this.toArray()
       .map((node) => node.toString(callback))
       .toString();
+    //toString() 메소드로 노드의 value값만 뽑아옴
   }
 
   reverse() {
