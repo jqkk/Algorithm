@@ -43,7 +43,7 @@ export default class DoublyLinkedList {
     }
 
     this.tail.next = newNode;
-    newNode.pervious = this.tail;
+    newNode.previous = this.tail;
 
     this.tail = newNode;
     //a <-> b 관계가 만들어짐
@@ -62,7 +62,7 @@ export default class DoublyLinkedList {
     //case 2. tail을 삭제하는 경우
     //case 3. 그 외 노드를 삭제하는 경우
 
-    let deleteNode = null;
+    let deletedNode = null;
     let currentNode = this.head;
 
     while (currentNode) {
@@ -89,26 +89,27 @@ export default class DoublyLinkedList {
 
             this.tail = null;
           }
+        } else if (deletedNode === this.tail) {
+          //노드가 한 개일 경우는 앞의 조건문에서 처리를 해주었으므로 여기선 따로 처리 x
+
+          this.tail = deletedNode.previous;
+          this.tail.next = null;
+        } else {
+          const previousNode = deletedNode.previous;
+          const nextNode = deletedNode.next;
+
+          previousNode.next = nextNode;
+          nextNode.previous = previousNode;
+
+          //a <-> b <-> c 에서 a <->c
+          //여기서 삭제할 노드(deletedNode)가 b라면 perviousNode는 a, nextNode는 c이다.
         }
-      } else if (deletedNode === this.tail) {
-        //노드가 한 개일 경우는 앞의 조건문에서 처리를 해주었으므로 여기선 따로 처리 x
-
-        this.tail = deletedNode.pervious;
-        this.tail.next = null;
-      } else {
-        const previousNode = deletedNode.previous;
-        const nextNode = deletedNode.next;
-
-        previousNode.next = nextNode;
-        nextNode.pervious = previousNode;
-
-        //a <-> b <-> c 에서 a <->c
-        //여기서 삭제할 노드(deletedNode)가 b라면 perviousNode는 a, nextNode는 c이다.
       }
 
       currentNode = currentNode.next; //노드를 순차적으로 읽어드림
     }
-    return deleteNode;
+
+    return deletedNode;
     //마지막 삭제된 노드를 return함
   }
 
@@ -161,7 +162,7 @@ export default class DoublyLinkedList {
     return deletedTail;
   }
 
-  deletedHead() {
+  deleteHead() {
     //노드의 head를 삭제
     if (!this.head) {
       //head가 null이라면...
