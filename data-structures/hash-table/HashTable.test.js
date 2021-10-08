@@ -54,4 +54,18 @@ describe("HashTable", () => {
     expect(object.prop1).toBe("a");
     expect(object.prop2).toBe("b");
   });
+
+  it("getKeys/getValues test", () => {
+    const hashTable = new HashTable();
+
+    hashTable.set("a", "sky-old");
+    hashTable.set("a", "sky");
+    hashTable.set("b", "sea");
+    hashTable.set("c", "earth");
+    hashTable.set("d", "ocean");
+
+    expect(hashTable.getKeys()).toEqual(["a", "b", "c", "d"]);
+
+    expect(hashTable.getValues()).toEqual(["sky", "sea", "earth", "ocean"]);
+  });
 });

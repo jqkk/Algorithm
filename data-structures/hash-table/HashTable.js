@@ -81,7 +81,7 @@ export default class HashTable {
 
   getKeys() {
     return Object.keys(this.keys);
-    //key값을 가져옴
+    //key값들을 가져옴
   }
 
   getValues() {
