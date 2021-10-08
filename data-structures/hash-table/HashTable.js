@@ -75,12 +75,13 @@ export default class HashTable {
   }
 
   has(key) {
-    return Object.hasOwnProperty.call(this.buckets, key);
+    return Object.hasOwnProperty.call(this.keys, key);
+    //hasOwnProperty : 해당 객체에 특정 프로퍼티에 대한 소유 여부를 반환
   }
 
   getKeys() {
     return Object.keys(this.keys);
-    //keyHash값을 가져옴
+    //key값을 가져옴
   }
 
   getValues() {
