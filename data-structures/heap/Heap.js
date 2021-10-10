@@ -3,6 +3,8 @@ import Comparator from "../../utils/Comparator";
 export default class Heap {
   constructor(comparatorFunction) {
     if (new.target === Heap) {
+      //Heap 자체로 인스턴스를 생성하면 안된다.
+      //메소드 오버라이딩을 이용해야함(MaxHeap, MinHeap)
       throw new TypeError("Cannot construct Heap instance directly");
     }
 
