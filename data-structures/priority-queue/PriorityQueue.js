@@ -8,6 +8,7 @@ export default class PriorityQueue extends MinHeap {
     this.priorities = new Map();
     //Map()은 key-value쌍으로 저장되는 형식이다
     //객체와 다르게 문자열 아닌 값도 키로 사용 가능하다
+    //key는 고유하다
 
     this.compare = new Comparator(this.comparePriority.bind(this));
     //bind ??
@@ -17,6 +18,7 @@ export default class PriorityQueue extends MinHeap {
     //item, priority(우선순위)
     //추가
     this.priorities.set(item, priority);
+
     super.add(item);
     return this;
   }
@@ -24,7 +26,7 @@ export default class PriorityQueue extends MinHeap {
   remove(item, customFindingComparator) {
     //삭제
     super.remove(item, customFindingComparator);
-    this.priorites.delete(item);
+    this.priorities.delete(item);
     return this;
   }
 
@@ -46,6 +48,8 @@ export default class PriorityQueue extends MinHeap {
   }
 
   comparePriority(a, b) {
+    //우선순위 비교
+    //우선순위가 높을수록 낮은 인덱스에 위치
     if (this.priorities.get(a) === this.priorities.get(b)) {
       return 0;
     }
