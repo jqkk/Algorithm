@@ -10,31 +10,38 @@ export default class PriorityQueue extends MinHeap {
     //객체와 다르게 문자열 아닌 값도 키로 사용 가능하다
 
     this.compare = new Comparator(this.comparePriority.bind(this));
+    //bind ??
   }
 
   add(item, priority = 0) {
+    //item, priority(우선순위)
+    //추가
     this.priorities.set(item, priority);
     super.add(item);
     return this;
   }
 
   remove(item, customFindingComparator) {
+    //삭제
     super.remove(item, customFindingComparator);
     this.priorites.delete(item);
     return this;
   }
 
   changePriority(item, priority) {
+    //우선순위 변경
     this.remove(item, new Comparator(this.compareValue));
     this.add(item, priority);
     return this;
   }
 
   findByValue(item) {
+    //item과 같은 값을 가진 트리 안의 노드들을 인덱스 배열로 가져옴
     return this.find(item, new Comparator(this.compareValue));
   }
 
   hasValue(item) {
+    //트리에 item과 같은 값을 가진 노드가 존재하는지 판별
     return this.findByValue(item).length > 0;
   }
 
