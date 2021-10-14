@@ -37,7 +37,6 @@ describe("Trie", () => {
     expect(trie.doesWordExist("cat")).toBe(true);
     expect(trie.doesWordExist("cart")).toBe(true);
 
-    //??
     trie.deleteWord("carpool");
     expect(trie.doesWordExist("carpet")).toBe(true);
     expect(trie.doesWordExist("car")).toBe(true);
@@ -52,6 +51,8 @@ describe("Trie", () => {
   });
 
   it("suggests next characters", () => {
+    const trie = new Trie();
+
     trie.addWord("cat");
     trie.addWord("cats");
     trie.addWord("car");
