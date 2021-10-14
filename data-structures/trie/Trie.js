@@ -41,6 +41,7 @@ export default class Trie {
       }
 
       currentNode.removeChild(character);
+      //끝단 자식 노드부터 제거해나감
     };
 
     depthFirstDelete(this.head);

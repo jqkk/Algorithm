@@ -40,5 +40,25 @@ describe("Trie", () => {
     //??
     trie.deleteWord("carpool");
     expect(trie.doesWordExist("carpet")).toBe(true);
+    expect(trie.doesWordExist("car")).toBe(true);
+    expect(trie.doesWordExist("cart")).toBe(true);
+    expect(trie.doesWordExist("cat")).toBe(true);
+
+    trie.deleteWord("car");
+    expect(trie.doesWordExist("carpet")).toBe(true);
+    expect(trie.doesWordExist("car")).toBe(false);
+    expect(trie.doesWordExist("cart")).toBe(true);
+    expect(trie.doesWordExist("cat")).toBe(true);
+  });
+
+  it("suggests next characters", () => {
+    trie.addWord("cat");
+    trie.addWord("cats");
+    trie.addWord("car");
+    trie.addWord("caption");
+
+    expect(trie.suggestNextCharacters("ca")).toEqual(["t", "r", "p"]);
+    expect(trie.suggestNextCharacters("cat")).toEqual(["s"]);
+    expect(trie.suggestNextCharacters("cab")).toBeNull();
   });
 });
