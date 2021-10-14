@@ -20,6 +20,12 @@ export default class TrieNode {
       this.children.set(character, new TrieNode(character, isCompleteWord));
       //새로운 자식 트라이노드 생성
     }
+
+    const childNode = this.children.get(character);
+
+    childNode.isCompleteWord = childNode.isCompleteWord || isCompleteWord;
+
+    return childNode;
   }
 
   removeChild(character) {
