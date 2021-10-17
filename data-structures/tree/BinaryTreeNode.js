@@ -2,6 +2,7 @@ import Comparator from "../../utils/Comparator";
 import HashTable from "../hash-table/HashTable";
 
 export default class BinaryTreeNode {
+  //이진 트리 노드 : 각각의 노드가 최대 두 개의 자식 노드를 가지는 트리 자료구조
   constructor(value = null) {
     this.left = null;
     this.right = null;
@@ -9,6 +10,7 @@ export default class BinaryTreeNode {
     this.value = value;
 
     this.meta = new HashTable();
+    //해시 테이블 생성
 
     this.nodeComparator = new Comparator();
   }
@@ -36,6 +38,7 @@ export default class BinaryTreeNode {
   }
 
   get uncle() {
+    //부모 노드를 구함
     if (!this.parent) {
       return undefined;
     }
@@ -62,13 +65,17 @@ export default class BinaryTreeNode {
   }
 
   setLeft(node) {
+    //왼쪽 노드를 설정한다.
     if (this.left) {
+      //이미 왼쪽 노드가 있는 경우 : 노드 간 연결을 끊는다.
+      //(자식 -> 부모 연결을 끊음)
       this.left.parent = null;
     }
-
+    //부모 -> 자식 연결
     this.left = node;
 
     if (this.left) {
+      //자식 -> 부모 연결
       this.left.parent = this;
     }
 
@@ -76,13 +83,17 @@ export default class BinaryTreeNode {
   }
 
   setRight(node) {
+    //오른쪽 노드를 설정한다.
     if (this.right) {
+      //이미 오른쪽 노드가 있는 경우 : 노드 간 연결을 끊는다.
+      //(자식 -> 부모 연결을 끊음)
       this.right.parent = null;
     }
-
+    //부모 -> 자식 연결
     this.right = node;
 
     if (node) {
+      //자식 -> 부모 연결
       this.right.parent = this;
     }
 
@@ -128,6 +139,7 @@ export default class BinaryTreeNode {
   }
 
   traverseInOrder() {
+    //트리 배열 형식으로 변환
     let traverse = [];
 
     if (this.left) {
@@ -144,6 +156,7 @@ export default class BinaryTreeNode {
   }
 
   toString() {
+    //트리 문자열 형식으로 변환
     return this.traverseInOrder().toString();
   }
 }
