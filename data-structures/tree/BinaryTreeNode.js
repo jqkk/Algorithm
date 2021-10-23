@@ -101,20 +101,27 @@ export default class BinaryTreeNode {
   }
 
   removeChild(nodeToRemove) {
+    //자식 노드 삭제
+
+    //자식이 존재하는지 확인 & 제거할 노드 매칭
     if (this.left && this.nodeComparator.equal(this.left, nodeToRemove)) {
       this.left = null;
       return true;
     }
 
+    //자식이 존재하는지 확인 & 제거할 노드 매칭
     if (this.right && this.nodeComparator.equal(this.right, nodeToRemove)) {
       this.right = null;
       return true;
     }
 
+    //노드를 정상적으로 삭제하면 true를 반환
+    //노드를 삭제하지 못했다면 false를 반환
     return false;
   }
 
   replaceChild(nodeToReplace, replacementNode) {
+    //직계자식노드 교환
     if (!nodeToReplace || !replacementNode) {
       return false;
     }
