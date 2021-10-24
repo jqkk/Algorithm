@@ -30,6 +30,7 @@ export default class BinaryTreeNode {
   }
 
   get height() {
+    //재귀함수를 이용하여 트리의 height(높이)를 구함
     return Math.max(this.leftHeight, this.rightHeight);
   }
 
@@ -38,7 +39,8 @@ export default class BinaryTreeNode {
   }
 
   get uncle() {
-    //부모 노드를 구함
+    //삼촌 노드를 구함(부모노드의 형제인 노드를 구함)
+    //부모노드가 부모의 부모노드에 대한 왼쪽 노드일 때 부모의 부모노드에 대한 오른쪽 노드 반환
     if (!this.parent) {
       return undefined;
     }
@@ -52,9 +54,11 @@ export default class BinaryTreeNode {
     }
 
     if (this.nodeComparator.equal(this.parent, this.parent.parent.left)) {
+      //부모노드가 왼쪽 노드일 경우 오른쪽 노드 반환
       return this.parent.parent.right;
     }
 
+    //부모 노드가 오른쪽 노드일 경우 왼쪽 노드 반환
     return this.parent.parent.left;
   }
 
@@ -140,6 +144,7 @@ export default class BinaryTreeNode {
   }
 
   static copyNode(sourceNode, targetNode) {
+    //트리 복제
     targetNode.setValue(sourceNode.value);
     targetNode.setLeft(sourceNode.left);
     targetNode.setRight(sourceNode.right);
