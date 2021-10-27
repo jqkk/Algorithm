@@ -1,7 +1,8 @@
 import BinaryTreeNode from "../BinaryTreeNode";
 import Comparator from "../../../utils/Comparator";
 
-export default class BinaryTreeNode extends BinaryTreeNode {
+export default class BinarySearchTreeNode extends BinaryTreeNode {
+  //BinaryTreeNode를 상속받음
   constructor(value = null, compareFunction = null) {
     super(value);
 
@@ -11,32 +12,41 @@ export default class BinaryTreeNode extends BinaryTreeNode {
 
   insert(value) {
     if (this.nodeValueComparator.equal(this.value, null)) {
+      //root노드의 value가 null일 경우
       this.value = value;
+      //value값을 설정해준다
 
       return this;
     }
 
     if (this.nodeValueComparator.lessThan(value, this.value)) {
+      //현재 노드의 값보다 파라미터(인자)로 들어온 value가 작은 경우
       if (this.left) {
         return this.left.insert(value);
+        //재귀함수
       }
 
       const newNode = new BinarySearchTreeNode(value, this.compareFunction);
       this.setLeft(newNode);
+      //왼쪽 노드에 삽입
 
       return newNode;
     }
 
     if (this.nodeValueComparator.greaterThan(value, this.value)) {
+      //현재 노드의 값보다 파라미터(인자)로 들어온 value가 더 큰 경우
       if (this.right) {
         return this.right.insert(value);
       }
 
       const newNode = new BinarySearchTreeNode(value, this.compareFunction);
       this.setRight(newNode);
+      //오른쪽 노드에 삽입
 
       return newNode;
     }
+
+    //노드들 간 value가 중복될 수는 없다
 
     return this;
   }
