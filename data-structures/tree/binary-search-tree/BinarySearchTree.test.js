@@ -21,4 +21,14 @@ describe("BinarySearchTree", () => {
 
     expect(bst.toString()).toBe("5,10,20");
   });
+
+  it("remove nodes", () => {
+    const bst = new BinarySearchTree();
+
+    bst.insert(10);
+    bst.insert(20);
+    bst.insert(5);
+
+    expect(bst.toString()).toBe("5,10,20");
+  });
 });
