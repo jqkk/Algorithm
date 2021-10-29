@@ -105,7 +105,7 @@ export default class BinaryTreeNode {
   }
 
   removeChild(nodeToRemove) {
-    //자식 노드 삭제
+    //직계 자식 노드 삭제
 
     //자식이 존재하는지 확인 & 제거할 노드 매칭
     if (this.left && this.nodeComparator.equal(this.left, nodeToRemove)) {
