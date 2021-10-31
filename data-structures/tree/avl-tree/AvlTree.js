@@ -2,9 +2,11 @@ import BinarySearchTree from "../binary-search-tree/BinarySearchTree";
 
 export default class AvlTree extends BinarySearchTree {
   insert(value) {
+    //노드 삽입
     super.insert(value);
 
     let currentNode = this.root.find(value);
+    //currentNode = 삽입한 노드
     while (currentNode) {
       this.balance(currentNode);
       currentNode = currentNode.parent;
