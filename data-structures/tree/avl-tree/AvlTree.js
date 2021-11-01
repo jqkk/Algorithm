@@ -10,6 +10,7 @@ export default class AvlTree extends BinarySearchTree {
     while (currentNode) {
       this.balance(currentNode);
       currentNode = currentNode.parent;
+      //currentNode를 부모 노드로 변경(위에서 아래로 노드를 읽어드림)
     }
   }
 
@@ -20,16 +21,23 @@ export default class AvlTree extends BinarySearchTree {
   }
 
   balance(node) {
+    //트리의 높이를 조절
     if (node.balanceFactor > 1) {
+      //왼쪽 노드의 높이가 2이상만큼 더 클 경우
       if (node.left.balanceFactor > 0) {
+        //기준 노드의 왼쪽 자식에서 측정한 트리의 높이가 왼쪽이 더 클 경우
         this.rotateLeftLeft(node);
       } else if (node.left.balanceFactor < 0) {
+        //기준 노드의 왼쪽 자식에서 측정한 트리의 높이가 오른쪽이 더 클 경우
         this.rotateLeftRight(node);
       }
     } else if (node.balanceFactor < -1) {
+      //오른쪽 노드의 높이가 2이상만큼 더 클 경우
       if (node.right.balanceFactor < 0) {
+        //기준 노드의 오른쪽 자식에서 측정한 트리의 높이가 왼쪽이 더 클 경우
         this.rotateRightRight(node);
       } else if (node.right.balanceFactor > 0) {
+        //기준 노드의 오른쪽 자식에서 측정한 트리의 높이가 오른쪽이 더 클 경우
         this.rotateRightLeft(node);
       }
     }
@@ -38,10 +46,13 @@ export default class AvlTree extends BinarySearchTree {
   rotateLeftLeft(rootNode) {
     const leftNode = rootNode.left;
     rootNode.setLeft(null);
+    //rootNode의 왼쪽 자식 노드를 떼어냄
 
     if (rootNode.parent) {
       rootNode.parent.setLeft(leftNode);
+      //rootNode의 왼쪽 형제 노드로 leftNode를 삽입
     } else if (rootNode === this.root) {
+      //rootNode가 root인 경우
       this.root = leftNode;
     }
 

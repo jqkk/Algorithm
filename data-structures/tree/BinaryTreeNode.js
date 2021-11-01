@@ -35,6 +35,7 @@ export default class BinaryTreeNode {
   }
 
   get balanceFactor() {
+    //지금 노드를 기준으로 트리의 왼쪽 높이 - 오른쪽 높이
     return this.leftHeight - this.rightHeight;
   }
 

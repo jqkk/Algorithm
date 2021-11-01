@@ -6,8 +6,9 @@ describe("AvlTree", () => {
 
     tree.insert(4);
     tree.insert(3);
+    expect(tree.root.value).toBe(4);
     tree.insert(2);
-
+    //rotateLeftLeft()가 이루어짐
     expect(tree.toString()).toBe("2,3,4");
     expect(tree.root.value).toBe(3);
     expect(tree.root.height).toBe(1);
