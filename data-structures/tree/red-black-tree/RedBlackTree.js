@@ -56,15 +56,77 @@ export default class RedBlackTree extends BinarySearchTree {
 
         if (this.nodeComparator.equal(grandParent.left, node.parent)) {
           if (this.nodeComparator.equal(node.parent.left, node)) {
+            newGrandParent = this.leftLeftRotation(grandParent);
+          } else {
+            newGrandParent = this.leftRightRotation(grandParent);
+          }
+        } else {
+          if (this.nodeComparator.equal(node.parent.right, node)) {
+            newGrandParent = this.rightRightRotation(grandParent);
+          } else {
+            newGrandParent = this.rightLeftRotation(grandParent);
           }
         }
+
+        if (newGrandParent && newGrandParent.parent === null) {
+          this.root = newGrandParent;
+
+          this.makeNodeBlack(this.root);
+        }
+
+        this.balance(newGrandParent);
       }
     }
   }
 
-  leftLeftRotation(grandParentNode) {}
+  leftLeftRotation(grandParentNode) {
+    const grandGrandParent = grandParentNode.parent;
 
-  leftRightRotation(grandParentNode) {}
+    let grandParentNodeIsLeft;
+    if (grandGrandParent) {
+      grandParentNodeIsLeft = this.nodeComparator.equal(
+        grandParent.left,
+        grandParentNode
+      );
+    }
+
+    const parentNode = grandParentNode.left;
+
+    const parentRightNode = parentNode.right;
+
+    parentNode.setRight(grandParentNode);
+
+    grandParentNode.setLeft(parentRightNode);
+
+    if (grandGrandParent) {
+      if (grandParentNodeIsLeft) {
+        grandGrandParent.setLeft(parentNode);
+      } else {
+        grandParentNode.setRight(parentNode);
+      }
+    } else {
+      parentNode.parent = null;
+    }
+
+    this.swapNodeColors(parentNode, grandParentNode);
+
+    return parentNode;
+  }
+
+  leftRightRotation(grandParentNode) {
+    const parentNode = grandParentNode.left;
+    const childNode = parentNode.right;
+
+    const childLeftNode = childNode.left;
+
+    childNode.setLeft(parentNode);
+
+    parentNode.setRight(childLeftNode);
+
+    grandParentNode.setLeft(childNode);
+
+    return this.leftLeftRotation(grandParentNode);
+  }
 
   rightRightRotation(grandParentNode) {}
 
