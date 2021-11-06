@@ -128,9 +128,54 @@ export default class RedBlackTree extends BinarySearchTree {
     return this.leftLeftRotation(grandParentNode);
   }
 
-  rightRightRotation(grandParentNode) {}
+  rightRightRotation(grandParentNode) {
+    const grandGrandParent = grandParentNode.parent;
 
-  rightLeftRotation(grandParentNode) {}
+    let grandParentNodeIsLeft;
+    if (grandGrandParent) {
+      grandParentNodeIsLeft = this.nodeComparator.equal(
+        grandGrandParent.left,
+        grandParentNode
+      );
+    }
+
+    const parentNode = grandParentNode.right;
+
+    const parentLeftNode = parentNode.left;
+
+    parentNode.setLeft(grandParentNode);
+
+    grandParentNode.setRight(parentLeftNode);
+
+    if (grandGrandParent) {
+      if (grandParentNodeIsLeft) {
+        grandGrandParent.setLeft(parentNode);
+      } else {
+        grandGrandParent.setRight(parentNode);
+      }
+    } else {
+      parentNode.parent = null;
+    }
+
+    this.swapNodeColors(parentNode, grandParentNode);
+
+    return parentNode;
+  }
+
+  rightLeftRotation(grandParentNode) {
+    const parentNode = grandParentNode.right;
+    const childNode = parentNode.left;
+
+    const childRightNode = childNode.right;
+
+    childNode.setRight(parentNode);
+
+    parentNode.setLeft(childRightNode);
+
+    grandParentNode.setRight(childNode);
+
+    return this.rightRightRotation(grandParentNode);
+  }
 
   makeNodeRed(node) {
     node.meta.set(COLOR_PROP_NAME, RED_BLACK_TREE_COLORS.red);
