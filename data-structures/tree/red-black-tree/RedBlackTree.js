@@ -12,9 +12,12 @@ export default class RedBlackTree extends BinarySearchTree {
     const insertedNode = super.insert(value);
 
     if (this.nodeComparator.equal(insertedNode, this.root)) {
+      //삽입된 노드가 root인 경우
       this.makeNodeBlack(insertedNode);
+      //해당 노드를 검은색으로 설정
     } else {
       this.makeNodeRed(insertedNode);
+      //해당 노드를 빨간색으로 설정
     }
 
     this.balance(insertedNode);
@@ -30,27 +33,36 @@ export default class RedBlackTree extends BinarySearchTree {
 
   balance(node) {
     if (this.nodeComparator.equal(node, this.root)) {
+      //삽입된 노드가 root인 경우
       return;
     }
 
     if (this.isNodeBlack(node.parent)) {
+      //해당 노드의 부모가 검정색인 경우
       return;
     }
 
+    //여기서부터는 부모노드가 빨간색일 경우
     const grandParent = node.parent.parent;
+    //grandParent = 해당 노드의 부모의 부모
 
     if (node.uncle && this.isNodeRed(node.uncle)) {
+      //부모노드의 형제노드가 존재하고, 그것이 빨간색일때
       this.makeNodeBlack(node.uncle);
       this.makeNodeBlack(node.parent);
+      //부모노드의 형제노드와 부모노드를 검은색으로 설정
 
       if (!this.nodeComparator.equal(grandParent, this.root)) {
+        //grandParent 노드가 root일 경우
         this.makeNodeRed(grandParent);
+        //grandParent 노드를 빨간색으로 설정
       } else {
         return;
       }
 
       this.balance(grandParent);
     } else if (!node.uncle || this.isNodeBlack(node.uncle)) {
+      //부모의 형제노드가 존재하지 않거나, 그것이 검은색일때
       if (grandParent) {
         let newGrandParent;
 
@@ -178,12 +190,14 @@ export default class RedBlackTree extends BinarySearchTree {
   }
 
   makeNodeRed(node) {
+    //노드를 빨간색으로 설정함
     node.meta.set(COLOR_PROP_NAME, RED_BLACK_TREE_COLORS.red);
 
     return node;
   }
 
   makeNodeBlack(node) {
+    //노드를 검은색으로 설정함
     node.meta.set(COLOR_PROP_NAME, RED_BLACK_TREE_COLORS.black);
 
     return node;
