@@ -3,7 +3,6 @@ console.log(string);
 //\'로 바꿔주어도됨
 
 //템플릿 리터럴
-
 var t = `A
 B
 C
