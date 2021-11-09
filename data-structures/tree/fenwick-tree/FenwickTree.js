@@ -9,11 +9,15 @@ export default class FenwickTree {
   }
 
   increase(position, value) {
+    //FenwickTree insert(삽입)
     if (position < 1 || position > this.arraySize) {
+      //position이 1보다 작거나 arrarySize보다 클 경우
       throw new Error("Position is out of allowed range");
     }
 
     for (let i = position; i <= this.arraySize; i += i & -i) {
+      //i를 이진수로 나타내었을 때 가장 뒤에 나오는 1이 위치하는 값
+      //&는 and 비트 연산자
       this.treeArray[i] += value;
     }
 
@@ -21,7 +25,9 @@ export default class FenwickTree {
   }
 
   query(position) {
+    //position까지의 합 반환
     if (position < 1 || position > this.arraySize) {
+      //position이 1보다 작거나 arrarySize보다 클 경우
       throw new Error("Postion is out of allowed range");
     }
 
@@ -35,6 +41,7 @@ export default class FenwickTree {
   }
 
   queryRange(leftIndex, rightIndex) {
+    //구간 합구하기(leftIndex부터 rightIndex까지의 합)
     if (leftIndex > rightIndex) {
       throw new Error("Left index can not be greater than right one");
     }
