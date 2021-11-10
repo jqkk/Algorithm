@@ -6,6 +6,7 @@ export default class GraphEdge {
   }
 
   getKey() {
+    //연결을 반환
     const startVertexKey = this.startVertex.getKey();
     const endVertexKey = this.endVertex.getKey();
 
@@ -21,6 +22,7 @@ export default class GraphEdge {
   }
 
   toString() {
+    //연결을 문자열로 변환
     return this.getKey();
   }
 }

@@ -3,6 +3,7 @@ import LinkedList from "../linked-list/LinkedList";
 export default class GraphVertex {
   constructor(value) {
     if (value === undefined) {
+      //value값이 들어오지 않았다면 에러를 발생시킴
       throw new Error("Graph vertex must have a value");
     }
 
@@ -15,9 +16,11 @@ export default class GraphVertex {
 
     this.value = value;
     this.edges = new LinkedList(edgeComparator);
+    //edges는 연결리스트
   }
 
   addEdge(edge) {
+    //Edge 연결
     this.edges.append(edge);
 
     return this;
@@ -40,6 +43,7 @@ export default class GraphVertex {
   }
 
   getEdges() {
+    //해당 vertex의 edge 배열을 반환
     return this.edges.toArray().map((linkedListNode) => linkedListNode.value);
   }
 
@@ -48,6 +52,7 @@ export default class GraphVertex {
   }
 
   hasEdge(requiredEdge) {
+    //edge 찾기
     const edgeNode = this.edges.find({
       callback: (edge) => edge === requiredEdge,
     });
@@ -75,6 +80,7 @@ export default class GraphVertex {
   }
 
   getKey() {
+    //Vertex의 value값을 반환
     return this.value;
   }
 
@@ -85,6 +91,7 @@ export default class GraphVertex {
   }
 
   toString(callback) {
+    //Vertex의 value값을 반환
     return callback ? callback(this.value) : `${this.value}`;
   }
 }
