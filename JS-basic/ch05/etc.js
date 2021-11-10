@@ -10,3 +10,4 @@ console.log(typeof num.toString());
 
 console.log("3.14" + 7);
 console.log(parseInt("3.14") + 7);
+console.log(typeof Number("3.14"));

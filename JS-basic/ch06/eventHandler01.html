@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>시각을 콘솔에 표시하기</title>
+  <script>
+    function displayTime(){
+      const date = new Date();
+      console.log(`현재 시각은 ${date.toLocaleDateString()} 입니다`)
+    }
+  </script>
+</head>
+<body>
+  <input type="button" value="click" onclick="displayTime()">
+  
+</body>
+</html>
