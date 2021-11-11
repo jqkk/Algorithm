@@ -47,6 +47,33 @@ function square(x){
 - var문과 달리 let문으로 선언한 변수를 끌어올리지 않는다
 - const문은 반드시 초기화해야한다
 
+## 함수 스코프(function-level scope) vs 블록 스코프(block-level scope)
+
+1. 함수 스코프(var)
+
+- 함수 내에서 선언된 변수는 함수 내에서만 유효하며 함수 외부에서는 참조할 수 없다. 즉, 함수 내부에서 선언한 변수는 지역 변수이며 함수 외부에서 선언한 변수는 모두 전역 변수이다.
+  ```javaScript
+  var foo = 123;  //전역 변수
+  console.log(foo)  //123
+  {
+  var foo = 456 //전역 변수
+  }
+  console.log(foo)  //456
+  ```
+
+2. 블록 스코프(const, let)
+
+- 모든 코드 블록(함수, if 문, for 문, while 문, try/catch 문 등) 내에서 선언된 변수는 코드 블록내에서만 유효하며 코드 블록 외부에서는 참조할 수 없다. 즉 코드 블록 내부에서 선언한 변수는 지역 변수이다.
+  ```javaScript
+  let foo = 123; //전역변수
+  {
+    let foo = 456;  //지역 변수
+    let bar  456;   //지역 변수
+  }
+  console.log(foo)  //123
+  console.log(bar)  //error
+  ```
+
 ## 메서드
 
 - 프로퍼티에 저장된 값의 타입이 함수면 그 프로퍼티를 메서드라고 부름
@@ -56,3 +83,7 @@ function square(x){
 
 - **자바스크립트의 배열은 Array 객체이며 객체로 배열의 기능을 가상으로 흉내낸 것이다**
 - Array 객체는 배열의 인덱스를 문자열로 변환해서 그것을 프로퍼티로 이용한다
+
+```
+
+```
