@@ -22,4 +22,5 @@ describe("GraphVertex", () => {
     expect(vertexB.hasEdge(edgeAB)).toBe(false);
     expect(vertexA.getEdges()[0].toString()).toBe("A_B");
   });
+  it("delete edge", () => {});
 });
