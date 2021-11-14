@@ -27,6 +27,7 @@ export default class GraphVertex {
   }
 
   deleteEdge(edge) {
+    //Edge 삭제
     this.edges.delete(edge);
   }
 
