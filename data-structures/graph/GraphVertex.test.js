@@ -40,4 +40,13 @@ describe("GraphVertex", () => {
     expect(vertexA.hasEdge(edgeAC)).toBe(true);
     expect(vertexA.getEdges().length).toBe(1);
   });
+  it("get neighbor", () => {
+    const vertexA = new GraphVertex("A");
+    const vertexB = new GraphVertex("B");
+    const vertexC = new GraphVertex("C");
+
+    const edgeAB = new GraphEdge(vertexA, vertexB);
+    const edgeAC = new GraphEdge(vertexA, vertexC);
+    vertexA.addEdge(edgeAB).addEdge(edgeAC);
+  });
 });

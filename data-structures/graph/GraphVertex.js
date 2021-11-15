@@ -86,6 +86,7 @@ export default class GraphVertex {
   }
 
   deleteAllEdges() {
+    //Vertex에 연결된 모든 Edge 삭제
     this.getEdges().forEach((edge) => this.deleteEdge(edge));
 
     return this;
