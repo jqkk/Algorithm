@@ -48,5 +48,38 @@ describe("GraphVertex", () => {
     const edgeAB = new GraphEdge(vertexA, vertexB);
     const edgeAC = new GraphEdge(vertexA, vertexC);
     vertexA.addEdge(edgeAB).addEdge(edgeAC);
+
+    expect(vertexB.getNeighbors()).toEqual([]);
+
+    const neighbors = vertexA.getNeighbors();
+
+    expect(neighbors.length).toBe(2);
+    expect(neighbors[0]).toBe(vertexB);
+    expect(neighbors[1]).toBe(vertexC);
+
+    expect(vertexA.hasNeighbor(vertexB)).toBe(true);
+    expect(vertexB.hasNeighbor(vertexA)).toBe(false);
+  });
+  it("find edge", () => {
+    const vertexA = new GraphVertex("A");
+    const vertexB = new GraphVertex("B");
+    const vertexC = new GraphVertex("C");
+
+    const edgeAB = new GraphEdge(vertexA, vertexB);
+    vertexA.addEdge(edgeAB);
+
+    expect(vertexA.findEdge(vertexB)).toEqual(edgeAB);
+    expect(vertexA.findEdge(vertexC)).toBeNull();
+  });
+  it("calculate vertex degree", () => {
+    const vertexA = new GraphVertex("A");
+    const vertexB = new GraphVertex("B");
+
+    expect(vertexA.getDegree()).toBe(0);
+
+    const edgeAB = new GraphEdge(vertexA, vertexB);
+    vertexA.addEdge(edgeAB);
+
+    expect(vertexA.getDegree()).toBe(1);
   });
 });

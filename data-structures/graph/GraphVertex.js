@@ -32,6 +32,7 @@ export default class GraphVertex {
   }
 
   getNeighbors() {
+    //해당 Vertex에 Edge로 연결된 Vertex 배열 반환
     const edges = this.edges.toArray();
 
     const neighborsConverter = (node) => {
@@ -49,6 +50,7 @@ export default class GraphVertex {
   }
 
   getDegree() {
+    //해당 vertex에 연결된 edge 갯수 반환
     return this.edges.toArray().length;
   }
 
@@ -62,20 +64,23 @@ export default class GraphVertex {
   }
 
   hasNeighbor(vertex) {
+    //파라미터(인자)로 들어온 vertex가 이웃으로 존재하는지 확인
     const vertexNode = this.edges.find({
       callback: (edge) =>
         edge.startVertex === vertex || edge.endVertex === vertex,
     });
 
     return !!vertexNode;
+    //노드가 있다면 true, 없다면 false
   }
 
   findEdge(vertex) {
+    //해당 vertex와 인수로 들어온 vertex의 edge를 찾음
     const edgeFinder = (edge) => {
       return edge.startVertex === vertex || edge.endVertex === vertex;
     };
 
-    const edge = thks.edges.find({ caback: edgeFinder });
+    const edge = this.edges.find({ callback: edgeFinder });
 
     return edge ? edge.value : null;
   }
