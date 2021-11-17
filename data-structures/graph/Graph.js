@@ -1,17 +1,21 @@
 export default class Graph {
   constructor(isDirected = false) {
+    //isDirected는 디폴트로 false
+    //direct는 방향성을 나타냄
     this.vertices = {};
     this.edges = {};
     this.isDirected = isDirected;
   }
 
   addVertex(newVertex) {
+    //vertex 추가
     this.vertices[newVertex.getKey()] = newVertex;
 
     return this;
   }
 
   getVertexByKey(vertexKey) {
+    //인수로 들어온 vertexKey를 바탕으로 그에 해당하는 vertex를 반환
     return this.vertices[vertexKey];
   }
 
@@ -20,6 +24,7 @@ export default class Graph {
   }
 
   getAllVertices() {
+    //graph에 추가된 모든 vertex들을 배열로 반환
     return Object.values(this.vertices);
   }
 
@@ -32,24 +37,29 @@ export default class Graph {
     let endVertex = this.getVertexByKey(edge.endVertex.getKey());
 
     if (!startVertex) {
+      //graph에 startVertex가 삽입되지 않은 경우
       this.addVertex(edge.startVertex);
       startVertex = this.getVertexByKey(edge.startVertex.getKey());
     }
 
     if (!endVertex) {
+      //graph에 endVertex가 삽입되지 않은 경우
       this.addVertex(edge.endVertex);
       endVertex = this.getVertexByKey(edge.endVertex.getKey());
     }
 
     if (this.edges[edge.getKey()]) {
+      //edge가 이미 이전에 삽입된 경우
       throw new Error("Edge has already been added before");
     } else {
       this.edges[edge.getKey()] = edge;
     }
 
     if (this.isDirected) {
+      //direct graph인 경우
       startVertex.addEdge(edge);
     } else {
+      //indirected graph인 경우
       startVertex.addEdge(edge);
       endVertex.addEdge(edge);
     }
@@ -131,6 +141,7 @@ export default class Graph {
   }
 
   toString() {
+    //graph에 추가된 vertex의 value값들을 출력
     return Object.keys(this.vertices).toString();
   }
 }
