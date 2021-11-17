@@ -1,5 +1,6 @@
 export default class GraphEdge {
   constructor(startVertex, endVertex, weight = 0) {
+    //기본 weight를 0으로 설정
     this.startVertex = startVertex;
     this.endVertex = endVertex;
     this.weight = weight;
@@ -14,6 +15,7 @@ export default class GraphEdge {
   }
 
   reverse() {
+    //edge 전환(startVertex와 endVertex를 swap)
     const tmp = this.startVertex;
     this.startVertex = this.endVertex;
     this.endVertex = tmp;
