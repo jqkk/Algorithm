@@ -20,6 +20,7 @@ export default class Graph {
   }
 
   getNeighbors(vertex) {
+    //인수로 들어온 vertex와 edge로 연결된 배열 반환
     return vertex.getNeighbors();
   }
 
@@ -29,6 +30,7 @@ export default class Graph {
   }
 
   getAllEdges() {
+    //graph의 모든 edge들을 배열로 반환
     return Object.values(this.edges);
   }
 
@@ -68,6 +70,7 @@ export default class Graph {
   }
 
   deleteEdge(edge) {
+    //edge 삭제
     if (this.edges[edge.getKey()]) {
       delete this.edges[edge.getKey()];
     } else {
@@ -79,9 +82,11 @@ export default class Graph {
 
     startVertex.deleteEdge(edge);
     endVertex.deleteEdge(edge);
+    //해당 vertex의 edge관계 제거
   }
 
   findEdge(startVertex, endVertex) {
+    //인수로 들어온 startVertex와 endVertex를 연결하고 있는 edge 반환
     const vertex = this.getVertexByKey(startVertex.getKey());
 
     if (!vertex) {
@@ -92,6 +97,7 @@ export default class Graph {
   }
 
   getWeight() {
+    //graph의 모든 edge의 합을 구하여 반환
     return this.getAllEdges().reduce((weight, graphEdge) => {
       return weight + graphEdge.weight;
     }, 0);
@@ -100,16 +106,18 @@ export default class Graph {
   reverse() {
     this.getAllEdges().forEach((edge) => {
       this.deleteEdge(edge);
-
+      //기존 edge들을 제거하고
       edge.reverse();
-
+      //edge를 reverse한 후
       this.addEdge(edge);
+      //reverse한 edge를 삽입한다
     });
 
     return this;
   }
 
   getVerticesIndices() {
+    //vertex value : index의 객체 형태로 반환
     const verticesIndices = {};
     this.getAllVertices().forEach((vertex, index) => {
       verticesIndices[vertex.getKey()] = index;
@@ -119,14 +127,16 @@ export default class Graph {
   }
 
   getAdjacencyMatrix() {
+    //인접행렬 구하기
     const vertices = this.getAllVertices();
     const verticesIndices = this.getVerticesIndices();
 
-    const adjacencyMatrix = Array(vertices.lenght)
+    const adjacencyMatrix = Array(vertices.length)
       .fill(null)
       .map(() => {
         return Array(vertices.length).fill(Infinity);
       });
+    //크기가 vertex들의 length x vertex들의 length인 2차원 배열 생성
 
     vertices.forEach((vertex, vertexIndex) => {
       vertex.getNeighbors().forEach((neighbor) => {
@@ -135,6 +145,7 @@ export default class Graph {
           vertex,
           neighbor
         ).weight;
+        //adjacencyMatrix[startVertex의 index, endVertex의 index]에 edge의 weight를 대입
       });
     });
     return adjacencyMatrix;
