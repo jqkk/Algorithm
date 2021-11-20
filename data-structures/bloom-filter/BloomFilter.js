@@ -7,7 +7,7 @@ export default class BloomFilter {
   insert(item) {
     const hashValues = this.getHashValues(item);
 
-    hashvalues.forEach((val) => this.storage.setValue(val));
+    hashValues.forEach((val) => this.storage.setValue(val));
   }
 
   mayContain(item) {
