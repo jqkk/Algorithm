@@ -1,11 +1,14 @@
 export default class BloomFilter {
   constructor(size = 100) {
+    //default size = 100
     this.size = size;
     this.storage = this.createStore(size);
   }
 
   insert(item) {
+    //삽입
     const hashValues = this.getHashValues(item);
+    //item을 hash1, hash2, hash3 함수를 이용하여 3개의 hash로 생성
 
     hashValues.forEach((val) => this.storage.setValue(val));
   }
@@ -32,6 +35,7 @@ export default class BloomFilter {
     ) {
       storage.push(false);
     }
+    //인수로 들어온 size 크기의 false 값이 대입되어 있는 배열 생성(storage)
 
     const storageInterface = {
       getValue(index) {
@@ -82,7 +86,7 @@ export default class BloomFilter {
     return Math.abs(hash % this.size);
   }
 
-  getHashValeus(item) {
+  getHashValues(item) {
     return [this.hash1(item), this.hash2(item), this.hash3(item)];
   }
 }
