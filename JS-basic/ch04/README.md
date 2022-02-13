@@ -46,6 +46,7 @@ function square(x){
 - let은 변수를 선언하고 const는 한 번만 할당할 수 있는 상수를 선언함
 - var문과 달리 let문으로 선언한 변수를 끌어올리지 않는다
 - const문은 반드시 초기화해야한다
+- 자바스크립트 엔진은 let문과 const문으로 선언한 변수도 끌어올리지만, 선언문을 평가하기 전에는 undefined로 초기화하지 않는다
 
 ## 함수 스코프(function-level scope) vs 블록 스코프(block-level scope)
 

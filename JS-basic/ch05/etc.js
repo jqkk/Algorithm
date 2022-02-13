@@ -5,6 +5,10 @@ let a = 5;
 const parity = a % 2 == 0 ? "짝수" : "홀수";
 console.log(parity);
 
+const formula = "x*x";
+eval("function f(x) { return " + formula + "; }");
+console.log(f(10));
+
 const num = 5858;
 console.log(typeof num.toString());
 
