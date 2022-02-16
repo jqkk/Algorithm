@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Closure</title>
+  <script>
+    window.onload = function(){
+      var elm = document.getElementsByTagName('input')
+      for(var i=0; i<elm.length; i++){
+        elm[i].onclick = function(){
+          //버튼을 누를때 0,1,2가 출력되게 할려면 var -> let으로 바꿔주면 됌
+          console.log(i)
+        }
+      }
+    }
+  </script>
+</head>
+<body>
+    <input type="button" value="0">
+    <input type="button" value="1">
+    <input type="button" value="2">
+</body>
+</html>

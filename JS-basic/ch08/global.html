@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Global</title>
+  <script>
+    //웹 브라우저 자바스크립트 실행환경에서..
+
+    console.log(this === window)
+
+    //전역 환경(렉시컬 환경 컴포넌트)
+    GlobalEnvironment = {
+      ObjectEnvironmentRecord: {
+        bindObject: window,
+      },
+      OuterLexicalEnvironmentReference: null,
+    };
+
+    //전역 실행 문맥(실행 문맥)
+    ExecutionContext = {
+      LexicalEnvironment: GlobalEnvironment,
+      ThisBinding: window,
+    };
+
+    var a = { x: 1, y: 2 };
+    console.log(window.a);
+    function norm(x){ console.log('haha')}
+    console.log(window.norm)
+    delete a
+    console.log(a)
+
+    b = {x: 1, y: 2};
+    delete b;
+    console.log(b)
+  </script>  
+</head>
+<body>
+  
+</body>
+</html>
