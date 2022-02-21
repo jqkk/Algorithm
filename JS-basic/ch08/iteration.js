@@ -3,7 +3,7 @@ a.forEach(function (val) {
   console.log(val);
 });
 
-const iter = a[Symbol.iterator]();
+var iter = a[Symbol.iterator]();
 // console.log(iter.next());
 // console.log(iter.next());
 // console.log(iter.next());
@@ -20,3 +20,10 @@ while (true) {
 for (let v of a) console.log(v);
 
 for (let v of "ABC") console.log(v);
+
+var b = ["A", "B", "C"];
+for (let v of b) console.log(v);
+var iter = b[Symbol.iterator]();
+for (let v of iter) console.log(v);
+var iter_iter = iter[Symbol.iterator]();
+console.log(iter_iter === iter);
