@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+    <div id="first">첫 번째</div>
+    <div id="second">두 번째</div>
+    <div id="third">세 번째</div>
+    <script>
+      var elements = document.getElementsByTagName("div")
+      elements[2].innerHTML = '여기를 수정함'
+      //document.getElementsByTagName("*")  //NodeList에 HTML 문서 안의 모든 요소를 담아서 반환
+      
+    </script>
+  
+</body>
+</html>
