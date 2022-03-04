@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <script>
+    window.onload = function() {
+      const outer = document.getElementById("outer")
+      const inner2 = document.getElementById('inner2')
+      outer.addEventListener("click", function(e) {
+        console.log('outer bubbling')
+      })
+      outer.addEventListener("click", function(e) {
+        console.log('outer capturing')
+      },true)
+      inner2.addEventListener("click", function(e) {
+        console.log('inner2 (1)')
+        e.stopImmediatePropagation()  //이벤트의 전파를 일시 정지
+      })
+      inner2.addEventListener("click", function(e) {
+        console.log('inner2 (2)')
+      })
+    }
+  </script>
+</head>
+<body>
+  <div id="outer">
+    outer
+    <div id="inner1">inner1</div>
+    <div id="inner2">inner2</div>
+  </div>
+  
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>보더 박스를 드래그하기</title>
+  <script src="../ch14/elt.js"></script>
+  <script>
+    window.onload = function() {
+      const box = elt('div', null, 'JavaScript')
+      document.body.appendChild(box)
+      box.style.display = 'inline-block'
+      box.style.position = 'absolute'
+      box.style.padding = '10px'
+      box.style.backgroundColor = 'blue'
+      box.style.color = 'white'
+      box.style.cursor = 'pointer'
+      let boxOffsetX, boxOffsetY
+      box.addEventListener('mousedown', function mouseDownListener(e) {
+        boxOffsetX = e.offsetX
+        boxOffsetY = e.offsetY
+        document.addEventListener('mousemove', mouseMoveListener, false)
+      }, false)
+
+      document.addEventListener('mouseup', function mouseUpListener(e) {
+        document.removeEventListener('mousemove', mouseMoveListener, false)
+      }, false)
+
+      function mouseMoveListener(e){
+        box.style.left = e.pageX - boxOffsetX + 'px'
+        box.style.top = e.pageY - boxOffsetY + 'px'
+      }
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>
