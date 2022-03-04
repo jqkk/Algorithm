@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <script src='./elt.js'></script>
+  <script>
+    window.onload = function(){
+      const bloodtypes = ['A형', 'B형','O형','AB형']
+      const form = elt('form', {id: 'menu'})
+      const select = elt("select", {name: 'bloodtype', id: 'bloodtyle'})
+      bloodtypes.forEach(function(type){
+        select.appendChild(elt('option', null, type))
+      })
+      form.appendChild(select)
+      document.body.appendChild(form)
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>

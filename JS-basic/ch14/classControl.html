@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    .emphasize {
+      background-color: pink
+    }
+  </style>
+</head>
+<body>
+  <h1 id="title">JavaScript</h1>
+  <p class="note invisible" id="note">...</p>
+  <script>
+    const element = document.getElementById('title')
+    element.onmouseover = () =>{
+      element.className = 'emphasize'
+    }
+    element.onmouseout = () =>{
+      element.className = ''
+    }
+  </script>
+  <script>
+    const note = document.getElementById('note')
+    const list = note.classList
+    for(let i=0; i<list.length; i++) {
+      console.log(list[i])
+    }
+  </script>
+  
+</body>
+</html>
