@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <script>
+    const promise = new Promise(function (resolve, reject) {
+      setTimeout(function () {
+        const name = prompt('이름을 입력하십시오')
+        resolve(name)
+      },1000)
+    })
+    promise.then(function (name){
+      console.log('안녕하세요, '+ name + ' 님!')
+    })
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

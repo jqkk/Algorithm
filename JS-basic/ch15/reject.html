@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <script>
+    const promise = new Promise(function(resolve, reject){
+      setTimeout(function(){
+        const n = parseInt(prompt('10 미만의 숫자를 입력하십시오'))
+        if(n<=10){
+          resolve(n)
+        } else {
+          reject(`오류 : ${n}은 10 이상입니다`)
+        }
+      }, 1000)
+    })
+    promise
+    .then(function(num){
+      console.log(`2^${num} = ${Math.pow(2, num)}`)
+    })
+    .catch(function(err){
+      console.log(err)
+    })
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
