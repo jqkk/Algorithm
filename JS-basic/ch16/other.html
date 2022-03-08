@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>도메인이 다른 페이지</title>
+  <script>
+    window.onload = function(){
+      const result = document.getElementById('display')
+      window.addEventListener('message', function(e){
+        const sourceOrigin = location.origin;
+        if(e.origin !== sourceOrigin) return
+        display.textContent = e.data
+      },false);
+    }
+  </script>
+</head>
+<body>
+  <div id="display"></div>
+  
+</body>
+</html>

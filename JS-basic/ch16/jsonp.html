@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <script>
+    function show(data){
+      console.log('name: '+ data.name)
+      console.log('price: '+ data.price)
+    }
+    window.onload = function(){
+      const url = 'jsonp.js'
+      script = document.createElement('script')
+      script.setAttribute('src', url)
+      document.getElementsByTagName('head')[0].appendChild(script)
+    }
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
