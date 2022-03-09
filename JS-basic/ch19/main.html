@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Web Workers 예제</title>
+  <script src="prime.js"></script>
+  <script>
+    window.onload = function(){
+      const N = '10000000'
+      const mainstart = document.getElementById('mainstart')
+      const workerstart = document.getElementById('workerstart')
+      const clear = document.getElementById('clear')
+      const output = document.getElementById('output')
+      startClock()
+
+      const worker = new Worker('worker.js')
+      worker.onmessage = function(e){
+        console.log('recieved: '+ new Date())
+        output.innerHTML = N + ' 이하의 최대 소수 = '+ e.data
+      }
+
+      workerstart.onclick = function(){
+        console.log('send: '+ new Date())
+        worker.postMessage(N)
+      }
+
+      mainstart.onclick = function(){
+        output.innerHTML = N + ' 이하의 최대 소수 =' + prime(N)
+      }
+
+      clear.onclick = function(){
+        output.innerHTML = ''
+      }
+    }
+    function startClock(){
+      const clock = document.getElementById('clock')
+      const startTime = new Date()
+      setInterval(function(){
+        clock.innerHTML = ((new Date()-startTime)/1000).toFixed(1)
+      },100)
+    }
+  </script>
+</head>
+<body>
+  <div id="clock"></div>
+  <input type="button" value="메인 스레드로 처리하기" id="mainstart">
+  <input type="button" value="워커 스레드로 처리하기" id="workerstart">
+  <input type="button" value="결과를 지우기" id="clear">
+  <div id="output"></div>
+</body>
+</html>
